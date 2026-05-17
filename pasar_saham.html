@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasar Saham: Dari Wall Street ke BEI | KBDI</title>
+  <meta name="description" content="Panduan lengkap memahami saham, reksa dana, dan ETF — dari mekanisme dasar hingga cara mulai berinvestasi di Indonesia dan Amerika." />
+  <link rel="icon" href="https://edukbdi.github.io/logo_KBDI/kbdi_trans.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:       #060d06;
+      --bg2:      #0a150a;
+      --bg3:      #0d1a0d;
+      --surface:  #111f11;
+      --surface2: #172517;
+      --border:   rgba(34,197,94,0.12);
+      --border2:  rgba(34,197,94,0.22);
+      --green:    #22c55e;
+      --green2:   #4ade80;
+      --green-dim:#166534;
+      --red:      #ef4444;
+      --red2:     #fca5a5;
+      --gold:     #c9a84c;
+      --gold2:    #f0c96a;
+      --text:     #e2e8e2;
+      --text-muted:#8aac8a;
+      --text-faint:#4a6b4a;
+      --mono:     'Courier New', Courier, monospace;
+      --card-shadow: 0 4px 24px rgba(0,20,0,0.5);
+    }
+    html.light {
+      --bg:       #f0f5f0;
+      --bg2:      #e8f0e8;
+      --bg3:      #ddeedd;
+      --surface:  #ffffff;
+      --surface2: #eef5ee;
+      --border:   rgba(22,163,74,0.15);
+      --border2:  rgba(22,163,74,0.3);
+      --green:    #16a34a;
+      --green2:   #15803d;
+      --green-dim:#bbf7d0;
+      --red:      #dc2626;
+      --red2:     #991b1b;
+      --gold:     #92640a;
+      --gold2:    #b45309;
+      --text:     #0a1a0a;
+      --text-muted:#1a2a1a;
+      --text-faint:#2e3f2e;
+      --card-shadow: 0 4px 24px rgba(0,40,0,0.08);
+    }
+    html.light .prose p { font-weight: 400; color: #0a1a0a; }
+    html.light .info-box ul li { color: #0f1f0f; }
+    html.light .note { color: #0f1f0f; }
+    html.light .warning { color: #0f1f0f; }
+    html.light .pull-quote p { color: #1a2a1a !important; }
+    html.light .step-desc { color: #0f1f0f; }
+    html.light .platform-desc { color: #0f1f0f; }
+    html.light .etf-name { color: #1a2a1a; }
+    html.light .stat-lbl { color: #1a2a1a; }
+    html.light .tbl tbody td { color: #0f1f0f; }
+    html.light .spy-note { color: #1a2a1a; }
+    html.light .illus-caption { color: #1a2a1a; }
+    html.light .hero-meta-item { color: #1a2a1a; }
+    html.light .sec-divider .sdiv-mid { color: #1a2a1a; }
+    html.light .sources ol li { color: #1a2a1a; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 70svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #030803;
+    }
+    .hero-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    #heroCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(3,8,3,0.3) 0%, rgba(3,8,3,0.5) 40%, rgba(3,8,3,0.88) 75%, rgba(3,8,3,0.97) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(80px,12vh,120px) clamp(20px,6vw,80px) clamp(60px,8vw,80px);
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--green);
+      display: inline-block;
+      border-radius: 2px;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.4rem, 9vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-title .accent-green { color: var(--green); }
+    .hero-title .accent-gold  { color: var(--gold); }
+    .hero-subtitle {
+      font-family: 'Source Serif 4', serif;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(220,235,220,0.72);
+      max-width: 540px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .hero-tag {
+      padding: 4px 12px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .hero-tag.gold { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+    .hero-meta-item {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      font-family: var(--mono);
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(18px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* TICKER TAPE */
+    .ticker-wrap {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 42px;
+      background: rgba(3,8,3,0.92);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex;
+      animation: tickerScroll 28s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 22px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-right: 1px solid rgba(34,197,94,0.1);
+      height: 42px;
+    }
+    .ticker-item .sym { color: #8aac8a; }
+    .ticker-item .up  { color: #22c55e; }
+    .ticker-item .dn  { color: #ef4444; }
+
+    /* STAT BAND */
+    .stat-band {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 5%;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--green);
+      line-height: 1;
+      display: block;
+    }
+    .stat-num.gold { color: var(--gold); }
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ARTICLE LAYOUT */
+    .article-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: clamp(36px,6vw,60px) clamp(16px,5vw,40px) 80px;
+    }
+
+    /* SECTION HEADING */
+    .sec-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--green-dim);
+      position: relative;
+    }
+    .sec-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 36px; height: 2px;
+      background: var(--gold);
+    }
+
+    /* PROSE */
+    .prose p {
+      font-family: 'Source Serif 4', serif;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .prose strong { font-weight: 600; color: var(--text); }
+    .prose em { color: var(--text-muted); font-style: italic; }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      border-left: 4px solid var(--green);
+      background: var(--surface2);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+      position: relative;
+    }
+    .pull-quote::before {
+      content: '"';
+      font-family: 'Source Serif 4', serif;
+      font-size: 4.5rem;
+      color: var(--green);
+      opacity: 0.15;
+      position: absolute;
+      top: -8px; left: 10px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .pull-quote p {
+      font-family: 'Source Serif 4', serif;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted) !important;
+      line-height: 1.7;
+      margin: 0 !important;
+    }
+    .pull-quote cite {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-top: 0.7rem;
+      font-style: normal;
+      letter-spacing: 0.04em;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      border-radius: 0 0 10px 10px;
+      padding: 1.4rem 1.6rem;
+      margin: 2rem 0;
+    }
+    .info-box h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.9rem;
+    }
+    .info-box ul { list-style: none; padding: 0; }
+    .info-box ul li {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      padding: 0.4rem 0 0.4rem 1.3rem;
+      position: relative;
+      line-height: 1.55;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-box ul li:last-child { border-bottom: none; }
+    .info-box ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.8rem;
+    }
+
+    /* NOTE */
+    .note {
+      background: var(--surface2);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 0.9rem 1.3rem;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+    }
+    .note strong { color: var(--gold); }
+
+    /* WARNING */
+    .warning {
+      background: rgba(239,68,68,0.07);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.65;
+    }
+    .warning .w-title {
+      font-weight: 700;
+      color: var(--red);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    /* COMPARISON TABLE */
+    .tbl-wrap { overflow-x: auto; margin: 1.8rem 0; }
+    .tbl {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+    }
+    .tbl thead th {
+      background: var(--surface2);
+      padding: 10px 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .tbl thead th:first-child { text-align: left; }
+    .tbl tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .tbl tbody td:first-child { text-align: left; font-weight: 500; color: var(--text); }
+    .tbl tbody tr:last-child td { border-bottom: none; }
+    .tbl tbody tr:hover { background: var(--surface); }
+    .tbl .g { color: var(--green); font-weight: 600; }
+    .tbl .r { color: var(--red); }
+    .tbl .gold { color: var(--gold); font-weight: 600; }
+
+    /* PLATFORM CARDS */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+    .platform-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .platform-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+    .platform-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--green);
+      margin-bottom: 0.3rem;
+    }
+    .platform-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .platform-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .tag-ok  { background: rgba(34,197,94,0.1);  color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+    .tag-mid { background: rgba(201,168,76,0.1);  color: var(--gold);  border: 1px solid rgba(201,168,76,0.2); }
+    .tag-warn{ background: rgba(239,68,68,0.1);   color: var(--red);   border: 1px solid rgba(239,68,68,0.2); }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 0; margin: 1.8rem 0; }
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      transition: border-color 0.2s;
+    }
+    .step:first-child { border-radius: 10px 10px 0 0; }
+    .step:last-child  { border-bottom: 1px solid var(--border); border-radius: 0 0 10px 10px; }
+    .step:hover { border-color: var(--border2); }
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--green);
+      opacity: 0.4;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 30px;
+    }
+    .step-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .step-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* SPY CHART SECTION */
+    .spy-chart-wrap {
+      margin: 2rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .spy-chart-header {
+      padding: 1rem 1.4rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .spy-chart-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--green);
+    }
+    .spy-chart-sub {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-faint);
+    }
+    #spyCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .spy-chart-footer {
+      padding: 0.7rem 1.4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .spy-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+    .spy-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+    .spy-link:hover { background: rgba(34,197,94,0.1); }
+
+    /* ILLUSTRATION WRAP */
+    .illus-wrap {
+      margin: 1.8rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 1.4rem;
+    }
+    .illus-wrap svg { display: block; width: 100%; height: auto; }
+    .illus-caption {
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-top: 0.7rem;
+      font-style: italic;
+    }
+
+    /* FLOW DIAGRAM — vertikal, responsif */
+    .flow-wrap {
+      margin: 1.8rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.2rem 1rem;
+    }
+    .flow-vert {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .flow-box {
+      border-radius: 8px;
+      padding: 0.85rem 1.2rem;
+      text-align: center;
+    }
+    .flow-box.green {
+      background: var(--bg2);
+      border: 1.5px solid rgba(34,197,94,0.35);
+    }
+    .flow-box.gold {
+      background: var(--bg2);
+      border: 1.5px solid rgba(201,168,76,0.35);
+    }
+    .flow-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+    }
+    .flow-box.green .flow-title { color: var(--green); }
+    .flow-box.gold  .flow-title { color: var(--gold); }
+    .flow-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+    html.light .flow-sub { color: var(--text-muted); }
+    .flow-vert-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 0.1rem 0;
+    }
+    .flow-arr-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+    html.light .flow-arr-label { color: var(--text-muted); }
+    .flow-arr-down {
+      font-size: 1.5rem;
+      color: var(--green);
+      line-height: 1.1;
+    }
+
+    /* Investor row reksa dana */
+    .rd-investors-row {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .rd-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    html.light .rd-label { color: var(--text-muted); }
+    .rd-investor {
+      background: var(--bg2);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 6px;
+      padding: 0.4rem 0.7rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-align: center;
+      min-width: 76px;
+    }
+    html.light .rd-investor { color: var(--text-muted); }
+    .rd-investor span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      color: var(--green);
+      letter-spacing: 0.04em;
+    }
+    .rd-porto-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-self: center;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    .rd-porto {
+      background: var(--bg2);
+      border: 1px solid rgba(34,197,94,0.18);
+      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--green);
+      text-align: center;
+    }
+    html.light .rd-porto { color: var(--green); }
+    .rd-porto.gold-text { color: var(--gold); border-color: rgba(201,168,76,0.18); }
+    .rd-porto.dim-text  { color: var(--text-faint); }
+    html.light .rd-porto.dim-text { color: var(--text-muted); }
+
+    /* ETF COMPARE CARDS */
+    .etf-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+    .etf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .etf-card.best {
+      border-color: var(--green);
+    }
+    .etf-card.best::before {
+      content: 'FAVORIT';
+      position: absolute;
+      top: -1px; right: 12px;
+      background: var(--green);
+      color: #060d06;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 8px;
+      border-radius: 0 0 6px 6px;
+    }
+    .etf-card:hover { transform: translateY(-3px); }
+    .etf-ticker {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .etf-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+    .etf-stat {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .etf-stat span { color: var(--green); font-weight: 700; }
+    .etf-stat .r { color: var(--red); }
+
+    /* SOURCES */
+    .sources {
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .sources h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 0.8rem;
+    }
+    .sources ol { padding-left: 1.3rem; }
+    .sources ol li {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .sources ol li a { color: var(--green); text-decoration: none; word-break: break-all; }
+    .sources ol li a:hover { text-decoration: underline; }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* DIVIDER */
+    .sec-divider {
+      margin: 3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sdiv-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--green), var(--border), transparent);
+    }
+    .sdiv-line.rev { background: linear-gradient(270deg, var(--green), var(--border), transparent); }
+    .sdiv-mid {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero { min-height: 65vh; }
+      .hero-content { padding: 2.5rem 5% 3.5rem; }
+      .etf-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2,1fr); }
+      .platform-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .platform-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-canvas-wrap">
+    <canvas id="heroCanvas"></canvas>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Ekonomi &amp; Literasi Keuangan</div>
+    <h1 class="hero-title">
+      <span class="accent-green">Pasar</span><br/>
+      <span class="accent-green">Saham</span><br/>
+      <span class="accent-gold">101</span>
+    </h1>
+    <p class="hero-subtitle">Dari Wall Street ke Bursa Efek Indonesia — panduan lengkap untuk memahami saham, reksa dana, dan ETF dari nol.</p>
+    <div class="hero-meta">
+      <span class="hero-tag">Ekonomi</span>
+      <span class="hero-tag gold">Investasi</span>
+      <span class="hero-meta-item">Mei 2026</span>
+      <span class="hero-meta-item">~15 menit baca</span>
+    </div>
+  </div>
+
+  <!-- Ticker tape -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="sym">SPY</span><span class="up">▲ 0.43%</span></div>
+      <div class="ticker-item"><span class="sym">BBCA</span><span class="dn">▼ 0.12%</span></div>
+      <div class="ticker-item"><span class="sym">AAPL</span><span class="up">▲ 1.20%</span></div>
+      <div class="ticker-item"><span class="sym">TLKM</span><span class="dn">▼ 0.80%</span></div>
+      <div class="ticker-item"><span class="sym">MSFT</span><span class="up">▲ 0.60%</span></div>
+      <div class="ticker-item"><span class="sym">BBRI</span><span class="up">▲ 0.35%</span></div>
+      <div class="ticker-item"><span class="sym">NVDA</span><span class="up">▲ 2.14%</span></div>
+      <div class="ticker-item"><span class="sym">ASII</span><span class="dn">▼ 0.45%</span></div>
+      <div class="ticker-item"><span class="sym">GOOGL</span><span class="up">▲ 0.88%</span></div>
+      <div class="ticker-item"><span class="sym">GOTO</span><span class="dn">▼ 1.10%</span></div>
+      <div class="ticker-item"><span class="sym">VOO</span><span class="up">▲ 0.41%</span></div>
+      <div class="ticker-item"><span class="sym">UNVR</span><span class="dn">▼ 0.22%</span></div>
+      <!-- duplikat untuk seamless loop -->
+      <div class="ticker-item"><span class="sym">SPY</span><span class="up">▲ 0.43%</span></div>
+      <div class="ticker-item"><span class="sym">BBCA</span><span class="dn">▼ 0.12%</span></div>
+      <div class="ticker-item"><span class="sym">AAPL</span><span class="up">▲ 1.20%</span></div>
+      <div class="ticker-item"><span class="sym">TLKM</span><span class="dn">▼ 0.80%</span></div>
+      <div class="ticker-item"><span class="sym">MSFT</span><span class="up">▲ 0.60%</span></div>
+      <div class="ticker-item"><span class="sym">BBRI</span><span class="up">▲ 0.35%</span></div>
+      <div class="ticker-item"><span class="sym">NVDA</span><span class="up">▲ 2.14%</span></div>
+      <div class="ticker-item"><span class="sym">ASII</span><span class="dn">▼ 0.45%</span></div>
+      <div class="ticker-item"><span class="sym">GOOGL</span><span class="up">▲ 0.88%</span></div>
+      <div class="ticker-item"><span class="sym">GOTO</span><span class="dn">▼ 1.10%</span></div>
+      <div class="ticker-item"><span class="sym">VOO</span><span class="up">▲ 0.41%</span></div>
+      <div class="ticker-item"><span class="sym">UNVR</span><span class="dn">▼ 0.22%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<div class="stat-band">
+  <div class="stat-grid">
+    <div class="stat-item">
+      <span class="stat-num">$53T</span>
+      <span class="stat-lbl">Kapitalisasi Pasar AS (2024)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num gold">Rp 12.3T</span>
+      <span class="stat-lbl">Kapitalisasi BEI (2024)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">13.2 Jt</span>
+      <span class="stat-lbl">Investor Ritel Indonesia</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num gold">500+</span>
+      <span class="stat-lbl">Emiten Terdaftar di BEI</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTIKEL -->
+<main class="article-wrap">
+
+  <!-- 01 -->
+  <div class="sec-label reveal">01 — Dasar</div>
+  <h2 class="sec-title reveal">Apa Itu Pasar Saham?</h2>
+  <div class="prose">
+    <p class="reveal">Bayangkan kamu punya warung mie ayam yang laris. Untuk buka cabang, kamu butuh modal tapi tidak punya cukup uang. Solusinya: jual sebagian kepemilikan warungmu ke orang lain. Itulah konsep dasar saham.</p>
+    <p class="reveal">Perusahaan besar melakukan hal yang sama — tapi dalam skala besar. Mereka menjual kepemilikan ke publik lewat proses yang disebut <strong>IPO (Initial Public Offering)</strong>. Setelah itu, saham diperjualbelikan setiap hari di bursa.</p>
+    <p class="reveal">Kamu membeli saham = kamu jadi pemilik sebagian kecil perusahaan itu. Kalau perusahaan untung dan berkembang, nilai sahammu naik.</p>
+  </div>
+
+  <div class="flow-wrap reveal">
+    <div class="flow-vert">
+      <div class="flow-box green">
+        <div class="flow-title">PERUSAHAAN</div>
+        <div class="flow-sub">Butuh Modal</div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">IPO — Jual Saham ke Publik</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="flow-box gold">
+        <div class="flow-title">BURSA EFEK</div>
+        <div class="flow-sub">Tempat Jual-Beli Saham</div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">Investor Beli Saham</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="flow-box green">
+        <div class="flow-title">INVESTOR</div>
+        <div class="flow-sub">Kamu — jadi pemilik sebagian perusahaan</div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">Perusahaan untung</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="flow-box green">
+        <div class="flow-title">KEUNTUNGAN</div>
+        <div class="flow-sub">Dividen &amp; Capital Gain</div>
+      </div>
+    </div>
+    <p class="illus-caption">Alur sederhana: perusahaan jual saham → investor beli → investor dapat untung dari dividen dan kenaikan harga</p>
+  </div>
+
+  <div class="info-box reveal">
+    <h4>Dua cara investor untung</h4>
+    <ul>
+      <li><strong>Capital Gain</strong> — beli saham Rp 1.000, jual saat harganya Rp 1.500. Untung Rp 500 per lembar.</li>
+      <li><strong>Dividen</strong> — perusahaan bagi sebagian labanya ke pemegang saham. Biasanya dibagikan setiap tahun.</li>
+    </ul>
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">02</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 02 -->
+  <div class="sec-label reveal">02 — Mekanisme</div>
+  <h2 class="sec-title reveal">Bagaimana Harga Terbentuk?</h2>
+  <div class="prose">
+    <p class="reveal">Harga saham bergerak karena supply dan demand — tapi yang menggerakkan supply dan demand itu jauh lebih kompleks dari sekadar "banyak yang beli, harga naik".</p>
+    <p class="reveal">Di permukaan memang benar: lebih banyak pembeli dari penjual → harga naik. Tapi kenapa orang mau beli atau jual? Di situlah banyak faktor bermain.</p>
+  </div>
+
+  <div class="info-box reveal">
+    <h4>Faktor penggerak harga saham</h4>
+    <ul>
+      <li><strong>Kinerja perusahaan</strong> — laba naik, utang turun, prospek bagus → investor mau beli → harga naik</li>
+      <li><strong>Suku bunga Bank Sentral</strong> — suku bunga naik → obligasi lebih menarik → investor jual saham → harga turun</li>
+      <li><strong>Inflasi</strong> — inflasi tinggi menekan daya beli dan margin keuntungan perusahaan</li>
+      <li><strong>Kondisi ekonomi makro</strong> — resesi, pertumbuhan GDP, angka pengangguran</li>
+      <li><strong>Sentimen &amp; psikologi massa</strong> — fear dan greed bisa menggerakkan harga jauh dari nilai wajarnya</li>
+      <li><strong>Berita &amp; geopolitik</strong> — perang, pandemi, sanksi, kebijakan pemerintah</li>
+      <li><strong>Aksi korporasi</strong> — merger, akuisisi, stock split, rights issue</li>
+      <li><strong>Pergerakan investor asing</strong> — capital inflow/outflow dari pasar berkembang seperti Indonesia</li>
+    </ul>
+  </div>
+
+  <div class="pull-quote reveal">
+    <p>Pasar saham adalah alat untuk memindahkan uang dari orang yang tidak sabar ke orang yang sabar.</p>
+    <cite>— Warren Buffett</cite>
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">03</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 03 -->
+  <div class="sec-label reveal">03 — Indonesia</div>
+  <h2 class="sec-title reveal">Bursa Efek Indonesia (BEI)</h2>
+  <div class="prose">
+    <p class="reveal">BEI adalah bursa saham resmi Indonesia, berlokasi di Jakarta. Di sinilah saham perusahaan-perusahaan Indonesia diperjualbelikan setiap hari kerja.</p>
+    <p class="reveal">Indeks utamanya adalah <strong>IHSG (Indeks Harga Saham Gabungan)</strong> — angka yang mencerminkan rata-rata pergerakan seluruh saham di BEI. Kalau IHSG naik, artinya secara umum pasar saham Indonesia sedang positif.</p>
+  </div>
+
+  <div class="info-box reveal">
+    <h4>Fakta penting BEI</h4>
+    <ul>
+      <li><strong>Jam trading</strong> — Senin–Jumat, Sesi I: 09:00–12:00, Sesi II: 13:30–15:50 WIB</li>
+      <li><strong>Satuan lot</strong> — 1 lot = 100 lembar saham. Kamu beli minimal 1 lot.</li>
+      <li><strong>Auto Rejection</strong> — harga tidak bisa naik atau turun lebih dari batas harian (untuk mencegah manipulasi)</li>
+      <li><strong>Regulator</strong> — diawasi OJK (Otoritas Jasa Keuangan)</li>
+      <li><strong>Saham blue chip populer</strong> — BBCA, BBRI, TLKM, ASII, UNVR</li>
+    </ul>
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">04</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 04 -->
+  <div class="sec-label reveal">04 — Amerika</div>
+  <h2 class="sec-title reveal">Pasar Saham Amerika</h2>
+  <div class="prose">
+    <p class="reveal">Amerika punya dua bursa utama: <strong>NYSE</strong> dan <strong>NASDAQ</strong>. Keduanya adalah bursa terbesar di dunia — jauh lebih besar dari BEI.</p>
+    <p class="reveal">Tiga indeks yang sering kamu dengar di berita:</p>
+  </div>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Indeks</th>
+          <th>Isi</th>
+          <th>Fungsi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>S&amp;P 500</td><td>500 perusahaan terbesar AS</td><td class="g">Tolok ukur utama ekonomi AS</td></tr>
+        <tr><td>Dow Jones</td><td>30 perusahaan blue chip ikonik</td><td>Indikator historis tertua</td></tr>
+        <tr><td>NASDAQ Composite</td><td>Mayoritas saham teknologi</td><td>Cermin industri tech AS</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p class="reveal">Kenapa pasar AS penting buat investor Indonesia? Karena kalau S&P 500 jatuh, IHSG biasanya ikut tertekan keesokan harinya. Investor asing menarik dana dari negara berkembang seperti Indonesia saat pasar AS sedang tidak stabil.</p>
+  </div>
+
+  <div class="note reveal">
+    <strong>Jam Trading NYSE/NASDAQ untuk WIB:</strong> buka pukul 21:30–04:00 WIB (musim panas) atau 22:30–05:00 WIB (musim dingin).
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">05</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 05 -->
+  <div class="sec-label reveal">05 — Reksa Dana</div>
+  <h2 class="sec-title reveal">Reksa Dana: Investasi Bareng</h2>
+  <div class="prose">
+    <p class="reveal">Reksa dana itu seperti <strong>patungan</strong>. Banyak investor mengumpulkan uang bersama, lalu dikelola oleh seorang profesional yang disebut <strong>Manajer Investasi (MI)</strong>.</p>
+    <p class="reveal">Kamu tidak perlu pilih saham sendiri. MI yang melakukannya. Cocok banget buat pemula yang belum mau repot riset saham.</p>
+  </div>
+
+  <div class="info-box reveal">
+    <h4>Jenis-jenis reksa dana</h4>
+    <ul>
+      <li><strong>Pasar Uang</strong> — paling aman, mirip tabungan tapi lebih tinggi bunganya. Cocok buat dana darurat.</li>
+      <li><strong>Obligasi/Pendapatan Tetap</strong> — investasi di surat utang pemerintah/perusahaan. Risiko menengah.</li>
+      <li><strong>Saham</strong> — investasi di portofolio saham. Risiko tinggi tapi potensi return tertinggi.</li>
+      <li><strong>Campuran</strong> — kombinasi saham dan obligasi. Risiko dan return di tengah-tengah.</li>
+    </ul>
+  </div>
+
+  <div class="flow-wrap reveal">
+    <div class="flow-vert">
+      <div class="rd-label" style="text-align:center;margin-bottom:0.5rem;">Investor Patungan</div>
+      <div class="rd-investors-row">
+        <div class="rd-investor">Investor A<span>Rp 100rb</span></div>
+        <div class="rd-investor">Investor B<span>Rp 500rb</span></div>
+        <div class="rd-investor">Investor C<span>Rp 200rb</span></div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">Dana dikumpulkan</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="flow-box gold" style="align-self:center;min-width:180px;">
+        <div class="flow-title">MANAJER INVESTASI</div>
+        <div class="flow-sub">Mengelola portofolio profesional</div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">Diinvestasikan ke</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="rd-porto-col">
+        <div class="rd-porto">📈 Saham</div>
+        <div class="rd-porto gold-text">📄 Obligasi</div>
+        <div class="rd-porto dim-text">💵 Pasar Uang</div>
+      </div>
+      <div class="flow-vert-arrow">
+        <span class="flow-arr-label">Hasil investasi dibagi</span>
+        <span class="flow-arr-down">↓</span>
+      </div>
+      <div class="flow-box green" style="align-self:center;min-width:180px;">
+        <div class="flow-title">RETURN</div>
+        <div class="flow-sub">Dibagikan ke semua investor secara proporsional</div>
+      </div>
+    </div>
+    <p class="illus-caption">Reksa dana: uang terkumpul → dikelola MI → diinvestasikan → return dibagi ke semua investor</p>
+  </div>
+
+  <div class="note reveal">
+    <strong>NAB (Nilai Aktiva Bersih)</strong> adalah harga per unit reksa dana — seperti harga saham. Kalau NAB naik, nilai investasimu ikut naik.
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">06</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 06 -->
+  <div class="sec-label reveal">06 — ETF</div>
+  <h2 class="sec-title reveal">ETF: Reksa Dana yang Bisa Diperdagangkan</h2>
+  <div class="prose">
+    <p class="reveal">ETF (Exchange Traded Fund) mirip reksa dana, tapi bisa dibeli dan dijual kapan saja di bursa seperti saham biasa.</p>
+    <p class="reveal">Kebanyakan ETF mengikuti indeks tertentu secara otomatis — tanpa Manajer Investasi yang aktif memilih saham. Hasilnya? Biaya jauh lebih murah.</p>
+  </div>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead><tr><th>Aspek</th><th>Reksa Dana</th><th>ETF</th></tr></thead>
+      <tbody>
+        <tr><td>Cara beli</td><td>Via aplikasi MI</td><td class="g">Di bursa, seperti saham</td></tr>
+        <tr><td>Harga</td><td>Per hari (NAB)</td><td class="g">Real-time</td></tr>
+        <tr><td>Biaya pengelolaan</td><td>0.5–2% per tahun</td><td class="g">0.03–0.5% per tahun</td></tr>
+        <tr><td>Minimum investasi</td><td>Bisa Rp 10.000</td><td>1 lot (100 lembar)</td></tr>
+        <tr><td>Cocok untuk</td><td>Pemula, otomatis</td><td>Yang mau fleksibel</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SPY SECTION -->
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">SPY</div><div class="sdiv-line rev"></div></div>
+
+  <div class="sec-label reveal">06A — Spotlight</div>
+  <h2 class="sec-title reveal">SPY: ETF Paling Terkenal di Dunia</h2>
+  <div class="prose">
+    <p class="reveal">SPY (SPDR S&P 500 ETF Trust) diluncurkan tahun 1993 — ETF pertama di Amerika. Satu SPY = kamu punya sebagian kecil dari 500 perusahaan terbesar AS sekaligus.</p>
+    <p class="reveal">Volume tradingnya luar biasa besar, menjadikannya favorit trader harian dan investor institusi global.</p>
+  </div>
+
+  <!-- SPY vs IVV vs VOO -->
+  <div class="etf-grid reveal">
+    <div class="etf-card">
+      <div class="etf-ticker">SPY</div>
+      <div class="etf-name">SPDR S&P 500 ETF Trust</div>
+      <div class="etf-stat">AUM: <span>~$550 B</span></div>
+      <div class="etf-stat">Expense Ratio: <span class="r">0.0945%/tahun</span></div>
+      <div class="etf-stat">Diluncurkan: <span>1993</span></div>
+      <div class="etf-stat">Volume: <span>Tertinggi</span></div>
+    </div>
+    <div class="etf-card">
+      <div class="etf-ticker">IVV</div>
+      <div class="etf-name">iShares Core S&P 500 ETF</div>
+      <div class="etf-stat">AUM: <span>~$500 B</span></div>
+      <div class="etf-stat">Expense Ratio: <span>0.03%/tahun</span></div>
+      <div class="etf-stat">Diluncurkan: <span>2000</span></div>
+      <div class="etf-stat">Volume: <span>Tinggi</span></div>
+    </div>
+    <div class="etf-card best">
+      <div class="etf-ticker">VOO</div>
+      <div class="etf-name">Vanguard S&P 500 ETF</div>
+      <div class="etf-stat">AUM: <span>~$500 B</span></div>
+      <div class="etf-stat">Expense Ratio: <span>0.03%/tahun</span></div>
+      <div class="etf-stat">Diluncurkan: <span>2010</span></div>
+      <div class="etf-stat">Volume: <span>Tinggi</span></div>
+    </div>
+  </div>
+
+  <div class="note reveal">
+    <strong>Ketiganya melacak indeks yang sama persis: S&P 500.</strong> Artinya isi portofolionya hampir identik — Apple, Microsoft, Nvidia, Google semuanya ada di ketiga ETF ini dengan proporsi yang sama.
+  </div>
+
+  <div class="info-box reveal">
+    <h4>Lalu apa bedanya?</h4>
+    <ul>
+      <li><strong>SPY</strong> — dibuat oleh State Street. ETF pertama di AS (1993), paling ramai diperdagangkan. Pilihan trader aktif karena mudah masuk-keluar. Biaya lebih mahal.</li>
+      <li><strong>IVV</strong> — dibuat oleh BlackRock/iShares. Biaya sama murahnya dengan VOO, cocok untuk investor jangka panjang.</li>
+      <li><strong>VOO</strong> — dibuat oleh Vanguard. Expense ratio paling kompetitif. Pilihan favorit investor pasif jangka panjang.</li>
+      <li><strong>Kesimpulan</strong> — kalau tujuanmu investasi jangka panjang, VOO atau IVV lebih hemat. Kalau sering trading, SPY lebih likuid.</li>
+    </ul>
+  </div>
+
+  <!-- SPY Historical Chart -->
+  <div class="spy-chart-wrap reveal">
+    <div class="spy-chart-header">
+      <div>
+        <div class="spy-chart-title">SPY — Perjalanan Harga 1993–2024</div>
+        <div class="spy-chart-sub">Data historis representatif · Tujuan edukasi</div>
+      </div>
+      <a href="https://www.tradingview.com/chart/?symbol=SPY" target="_blank" class="spy-link">Live Chart ↗</a>
+    </div>
+    <canvas id="spyCanvas"></canvas>
+    <div class="spy-chart-footer">
+      <span class="spy-note">Data dibulatkan untuk keperluan edukasi. Bukan saran investasi.</span>
+      <span class="spy-note" style="color:var(--green);">Total return 1993–2024: ~+1.300%</span>
+    </div>
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">07</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 07 -->
+  <div class="sec-label reveal">07 — Perbandingan</div>
+  <h2 class="sec-title reveal">Saham vs Reksa Dana vs ETF</h2>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Aspek</th>
+          <th>Saham</th>
+          <th>Reksa Dana</th>
+          <th>ETF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Risiko</td><td class="r">Tinggi</td><td>Bervariasi</td><td>Menengah</td></tr>
+        <tr><td>Potensi Return</td><td class="g">Tertinggi</td><td>Menengah</td><td class="g">Tinggi</td></tr>
+        <tr><td>Modal Awal</td><td>Tergantung saham</td><td class="g">Sangat kecil (Rp10rb)</td><td>1 lot</td></tr>
+        <tr><td>Perlu Riset?</td><td class="r">Ya, aktif</td><td class="g">Tidak perlu</td><td>Minimal</td></tr>
+        <tr><td>Biaya</td><td>0.15–0.25% per transaksi</td><td class="r">0.5–2%/tahun</td><td class="g">0.03–0.5%/tahun</td></tr>
+        <tr><td>Cocok untuk</td><td>Investor aktif</td><td class="g">Pemula</td><td>Semua level</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">08</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 08 -->
+  <div class="sec-label reveal">08 — Cara Mulai di Indonesia</div>
+  <h2 class="sec-title reveal">Cara Beli Saham di BEI</h2>
+  <div class="prose">
+    <p class="reveal">Prosesnya mudah dan bisa selesai dalam satu hari. Yang kamu butuhkan: KTP, NPWP, dan rekening bank.</p>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Pilih Sekuritas (Broker)</div><div class="step-desc">Pilih perusahaan sekuritas terdaftar OJK. Populer: Stockbit, IPOT, BCA Sekuritas, Mirae Asset. Unduh aplikasinya.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Daftar &amp; Verifikasi</div><div class="step-desc">Upload foto KTP, selfie, dan data rekening bank. Proses verifikasi biasanya 1–3 hari kerja.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Deposit Dana</div><div class="step-desc">Transfer ke rekening dana nasabah (RDN) atas namamu sendiri. Minimal tergantung sekuritas — ada yang mulai Rp 100.000.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title">Pilih Saham</div><div class="step-desc">Cari saham yang mau dibeli. Perhatikan kinerja perusahaan, bukan cuma harga. Hindari saham yang naik tiba-tiba tanpa alasan jelas ("saham gorengan").</div></div></div>
+    <div class="step"><div class="step-num">5</div><div><div class="step-title">Order Beli</div><div class="step-desc">Masukkan jumlah lot dan harga. Ada dua cara: market order (beli di harga pasar sekarang) atau limit order (tentukan harga sendiri, tunggu terpenuhi).</div></div></div>
+  </div>
+
+  <div class="note reveal">
+    <strong>Biaya transaksi BEI:</strong> beli sekitar 0.15%, jual sekitar 0.25% dari nilai transaksi. Sudah termasuk pajak.
+  </div>
+
+  <div class="sec-divider reveal"><div class="sdiv-line"></div><div class="sdiv-mid">09</div><div class="sdiv-line rev"></div></div>
+
+  <!-- 09 -->
+  <div class="sec-label reveal">09 — Cara Beli Saham AS</div>
+  <h2 class="sec-title reveal">Cara Beli Saham &amp; ETF Amerika dari Indonesia</h2>
+  <div class="prose">
+    <p class="reveal">Kamu bisa beli saham AS dan ETF seperti SPY dari Indonesia. Beberapa platform menawarkan ini secara legal dan terdaftar di OJK.</p>
+  </div>
+
+  <div class="platform-grid reveal">
+    <div class="platform-card">
+      <div class="platform-name">Gotrade</div>
+      <div class="platform-desc">Antarmuka simpel, mendukung fractional shares. Cocok untuk pemula yang mau mulai kecil.</div>
+      <span class="platform-tag tag-ok">OJK Terdaftar</span>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">IPOT Global</div>
+      <div class="platform-desc">Dari Indo Premier — terintegrasi dengan akun saham BEI kamu. Praktis kalau sudah pakai IPOT.</div>
+      <span class="platform-tag tag-ok">OJK Terdaftar</span>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Pluang</div>
+      <div class="platform-desc">Fokus ke fractional shares dengan modal kecil. Antarmuka ramah pemula.</div>
+      <span class="platform-tag tag-ok">OJK Terdaftar</span>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">IBKR</div>
+      <div class="platform-desc">Interactive Brokers — platform profesional dengan akses ke bursa global. Biaya sangat rendah.</div>
+      <span class="platform-tag tag-warn">Diblokir di Indonesia</span>
+    </div>
+  </div>
+
+  <div class="warning reveal">
+    <div class="w-title">⚠ Tentang IBKR (Interactive Brokers)</div>
+    Interactive Brokers adalah platform investasi profesional yang sangat populer di kalangan investor global karena biayanya yang sangat rendah dan akses ke banyak bursa dunia. Namun, situs ini <strong>diblokir oleh pemerintah Indonesia</strong> dan tidak terdaftar di OJK. Mengaksesnya membutuhkan VPN, yang menambah risiko hukum dan tidak ada perlindungan dari OJK jika terjadi masalah. Untuk investor Indonesia, gunakan platform yang terdaftar OJK terlebih dahulu.
+  </div>
+
+  <div class="info-box reveal">
+    <h4>⚠ Hal penting: Pajak Dividen Saham AS untuk WNI</h4>
+    <ul>
+      <li>Dividen dari saham AS dikenakan <strong>Withholding Tax 30%</strong> untuk non-residen AS secara default.</li>
+      <li>Indonesia dan AS punya perjanjian pajak (tax treaty) — dengan mengisi formulir <strong>W-8BEN</strong>, tarifnya turun menjadi <strong>15%</strong>.</li>
+      <li>Formulir W-8BEN biasanya bisa diisi langsung di platform. Jangan sampai lupa — ini bisa menghemat setengah pajak dividenmu.</li>
+      <li>Keuntungan investasi saham AS tetap wajib dilaporkan di <strong>SPT Tahunan</strong> Indonesia.</li>
+    </ul>
+  </div>
+
+  <div class="pull-quote reveal">
+    <p>Investasi terbaik yang bisa kamu lakukan adalah investasi pada dirimu sendiri — tapi investasi kedua terbaik adalah mulai lebih awal dari yang kamu pikir perlu.</p>
+    <cite>— Prinsip dasar investasi jangka panjang</cite>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sumber &amp; Referensi</h3>
+    <ol>
+      <li>Bursa Efek Indonesia. <em>Tentang BEI.</em> <a href="https://www.idx.co.id" target="_blank">idx.co.id</a></li>
+      <li>OJK. <em>Pasar Modal Indonesia.</em> <a href="https://www.ojk.go.id" target="_blank">ojk.go.id</a></li>
+      <li>U.S. Securities and Exchange Commission. <em>Exchange-Traded Funds (ETFs).</em> <a href="https://www.sec.gov/investor/pubs/etf.htm" target="_blank">sec.gov</a></li>
+      <li>Vanguard. <em>VOO — Vanguard S&P 500 ETF.</em> <a href="https://investor.vanguard.com/etf/profile/VOO" target="_blank">vanguard.com</a></li>
+      <li>State Street Global Advisors. <em>SPDR S&P 500 ETF Trust (SPY).</em> <a href="https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy" target="_blank">ssga.com</a></li>
+      <li>IRS. <em>Instructions for Form W-8BEN.</em> <a href="https://www.irs.gov/forms-pubs/about-form-w-8-ben" target="_blank">irs.gov</a></li>
+      <li>Kementerian Keuangan RI. <em>Perjanjian Penghindaran Pajak Berganda Indonesia–AS.</em> <a href="https://www.kemenkeu.go.id" target="_blank">kemenkeu.go.id</a></li>
+      <li>KSEI. <em>Statistik Investor Pasar Modal Indonesia 2024.</em> <a href="https://www.ksei.co.id" target="_blank">ksei.co.id</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+/* ── HERO CANVAS: Candlestick Background ── */
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const CGAP  = 28;   // lebih lebar agar candle tidak rapat
+  const SPEED = 20;
+
+  let W = 0, H = 0;
+  let cands = [];
+  let lastTs = null;
+
+  function getSize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    return {
+      w: rect.width  || window.innerWidth,
+      h: rect.height || window.innerHeight
+    };
+  }
+
+  function setup() {
+    const s = getSize();
+    W = s.w; H = s.h;
+    canvas.width  = W;
+    canvas.height = H;
+    buildCands();
+  }
+
+  function buildCands() {
+    cands = [];
+    const cnt = Math.ceil(W / CGAP) + 8;
+    // mulai dari tengah
+    let p = H * 0.50;
+    for (let i = 0; i < cnt; i++) {
+      const o = p;
+      // fluktuasi body besar: 8–18% tinggi canvas
+      const bodyMove = (Math.random() * 0.10 + 0.08) * H;
+      const dir = Math.random() < 0.50 ? 1 : -1;
+      p += dir * bodyMove;
+      p  = Math.max(H * 0.08, Math.min(H * 0.90, p));
+      // wick panjang: 5–14% tinggi canvas
+      const wickUp  = Math.random() * 0.09 + 0.05;
+      const wickDn  = Math.random() * 0.09 + 0.05;
+      cands.push({
+        o, c: p,
+        hi: Math.min(o,p) - wickUp * H,
+        lo: Math.max(o,p) + wickDn * H
+      });
+    }
+  }
+
+  function draw(ts) {
+    if (!lastTs) lastTs = ts;
+    const dt = Math.min(ts - lastTs, 50);
+    lastTs = ts;
+
+    ctx.fillStyle = '#030803';
+    ctx.fillRect(0, 0, W, H);
+
+    /* grid */
+    ctx.strokeStyle = 'rgba(34,197,94,0.05)';
+    ctx.lineWidth = 1;
+    for (let y = H/6; y < H; y += H/6) {
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+    }
+    for (let x = 64; x < W; x += 64) {
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+    }
+
+    /* candlestick scroll */
+    const totC   = CGAP * cands.length;
+    const cShift = (SPEED * ts / 1000) % totC;
+
+    for (let i = 0; i < cands.length; i++) {
+      let x = i * CGAP - cShift;
+      if (x < -CGAP)    x += totC;
+      if (x > W + CGAP) continue;
+
+      const c   = cands[i];
+      const up  = c.c <= c.o;
+      const bodyCol = up ? 'rgba(34,197,94,0.65)' : 'rgba(239,68,68,0.60)';
+      const wickCol = up ? 'rgba(34,197,94,0.45)' : 'rgba(239,68,68,0.40)';
+      const bH  = Math.max(Math.abs(c.c - c.o), 4);
+      const bY  = Math.min(c.o, c.c);
+
+      /* wick */
+      ctx.strokeStyle = wickCol;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(x, c.hi); ctx.lineTo(x, bY);
+      ctx.moveTo(x, bY+bH); ctx.lineTo(x, c.lo);
+      ctx.stroke();
+
+      /* body — lebih lebar */
+      ctx.fillStyle = bodyCol;
+      ctx.fillRect(x - 6, bY, 12, bH);
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  function init() {
+    setup();
+    lastTs = null;
+    requestAnimationFrame(draw);
+
+    let rPend = false;
+    window.addEventListener('resize', () => {
+      if (rPend) return;
+      rPend = true;
+      requestAnimationFrame(() => {
+        const s = getSize();
+        W = s.w; H = s.h;
+        canvas.width = W; canvas.height = H;
+        buildCands();
+        rPend = false;
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+
+/* ── SPY HISTORY CHART ── */
+(function() {
+  const canvas = document.getElementById('spyCanvas');
+  if (!canvas) return;
+
+  // Data historis SPY (tahun, harga penutupan approximate)
+  const spyData = [
+    {y:1993,p:43,  label:'IPO'},
+    {y:1995,p:58,  label:null},
+    {y:1997,p:97,  label:null},
+    {y:1999,p:145, label:null},
+    {y:2000,p:155, label:'Dot-com Peak'},
+    {y:2001,p:115, label:null},
+    {y:2002,p:88,  label:null},
+    {y:2003,p:93,  label:'Post Crash'},
+    {y:2005,p:120, label:null},
+    {y:2007,p:157, label:'Pre-Krisis'},
+    {y:2008,p:90,  label:null},
+    {y:2009,p:67,  label:'Krisis 2009'},
+    {y:2010,p:115, label:'Recovery'},
+    {y:2012,p:142, label:null},
+    {y:2014,p:201, label:null},
+    {y:2016,p:224, label:null},
+    {y:2018,p:293, label:null},
+    {y:2019,p:323, label:null},
+    {y:2020,p:218, label:'COVID Crash'},
+    {y:2020.8,p:368,label:'Recovery'},
+    {y:2021,p:477, label:null},
+    {y:2022,p:380, label:'Bear 2022'},
+    {y:2023,p:475, label:null},
+    {y:2024,p:560, label:'+1300% Total'},
+  ];
+
+  function drawSPY() {
+    const W = canvas.parentElement.clientWidth;
+    const H = 280;
+    canvas.width = W;
+    canvas.height = H;
+    canvas.style.height = H + 'px';
+
+    const ctx = canvas.getContext('2d');
+    const isDark = !document.documentElement.classList.contains('light');
+
+    // BG
+    ctx.fillStyle = isDark ? '#0d1a0d' : '#f0f5f0';
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    const PAD = { l: 50, r: 20, t: 20, b: 38 };
+    const cW = W - PAD.l - PAD.r;
+    const cH = H - PAD.t - PAD.b;
+
+    ctx.strokeStyle = isDark ? 'rgba(34,197,94,0.07)' : 'rgba(22,163,74,0.1)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+      const y = PAD.t + (cH / 5) * i;
+      ctx.beginPath();
+      ctx.moveTo(PAD.l, y);
+      ctx.lineTo(W - PAD.r, y);
+      ctx.stroke();
+    }
+
+    // Skala
+    const prices = spyData.map(d => d.p);
+    const minP = 0;
+    const maxP = Math.max(...prices) * 1.05;
+    const minY = Math.min(...spyData.map(d => d.y));
+    const maxY = Math.max(...spyData.map(d => d.y));
+
+    function toX(year)  { return PAD.l + ((year - minY) / (maxY - minY)) * cW; }
+    function toY(price) { return PAD.t + cH - ((price - minP) / (maxP - minP)) * cH; }
+
+    // Y axis labels
+    ctx.fillStyle = isDark ? '#4a6b4a' : '#6b7f6b';
+    ctx.font = '10px "DM Sans", sans-serif';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 5; i++) {
+      const val = Math.round((maxP / 5) * (5 - i));
+      ctx.fillText('$' + val, PAD.l - 6, PAD.t + (cH / 5) * i + 4);
+    }
+
+    // X axis labels
+    ctx.textAlign = 'center';
+    [1993,1997,2000,2003,2007,2009,2012,2016,2020,2024].forEach(yr => {
+      const x = toX(yr);
+      ctx.fillText("'" + String(yr).slice(2), x, H - 8);
+    });
+
+    // Area fill
+    const grad = ctx.createLinearGradient(0, PAD.t, 0, PAD.t + cH);
+    grad.addColorStop(0, isDark ? 'rgba(34,197,94,0.25)' : 'rgba(22,163,74,0.2)');
+    grad.addColorStop(1, 'rgba(34,197,94,0)');
+
+    ctx.beginPath();
+    ctx.moveTo(toX(spyData[0].y), toY(spyData[0].p));
+    spyData.forEach(d => ctx.lineTo(toX(d.y), toY(d.p)));
+    ctx.lineTo(toX(spyData[spyData.length-1].y), PAD.t + cH);
+    ctx.lineTo(toX(spyData[0].y), PAD.t + cH);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.moveTo(toX(spyData[0].y), toY(spyData[0].p));
+    spyData.forEach(d => ctx.lineTo(toX(d.y), toY(d.p)));
+    ctx.strokeStyle = isDark ? '#22c55e' : '#16a34a';
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+
+    // Labels untuk milestone
+    spyData.forEach(d => {
+      if (!d.label) return;
+      const x = toX(d.y);
+      const y = toY(d.p);
+      // Dot
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = isDark ? '#22c55e' : '#16a34a';
+      ctx.fill();
+      // Label box
+      const lx = Math.max(PAD.l + 4, Math.min(W - PAD.r - 60, x - 30));
+      const ly = y < PAD.t + 30 ? y + 14 : y - 24;
+      ctx.fillStyle = isDark ? 'rgba(17,31,17,0.9)' : 'rgba(240,245,240,0.9)';
+      ctx.strokeStyle = isDark ? 'rgba(34,197,94,0.3)' : 'rgba(22,163,74,0.3)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(lx, ly, 62, 17, 3);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = isDark ? '#c9a84c' : '#92640a';
+      ctx.font = 'bold 9px "DM Sans", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(d.label, lx + 4, ly + 12);
+    });
+  }
+
+  function init() {
+    drawSPY();
+    window.addEventListener('resize', drawSPY);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { init(); obs.disconnect(); } });
+  }, { threshold: 0.1 });
+  obs.observe(canvas);
+})();
+
+/* ── SCROLL REVEAL ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+</script>
+
+<!-- Header/Footer KBDI -->
+<script>
+  const savedTheme = localStorage.getItem('kbdi-theme');
+  if (savedTheme === 'light') document.documentElement.classList.add('light');
+
+  fetch('https://edukbdi.github.io/header.html')
+    .then(r => r.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('afterbegin', html);
+      const header = document.getElementById('kbdi-header');
+      if (savedTheme === 'light') header.classList.add('kbdi-light');
+      document.getElementById('kbdiThemeToggle').addEventListener('click', function() {
+        const isLight = document.documentElement.classList.toggle('light');
+        header.classList.toggle('kbdi-light', isLight);
+        localStorage.setItem('kbdi-theme', isLight ? 'light' : 'dark');
+        const footer = document.getElementById('kbdi-footer');
+        if (footer) footer.classList.toggle('kbdi-light', isLight);
+      });
+    });
+
+  fetch('https://edukbdi.github.io/footer.html')
+    .then(r => r.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+      const footer = document.getElementById('kbdi-footer');
+      if (footer && savedTheme === 'light') footer.classList.add('kbdi-light');
+    });
+</script>
+
+</body>
+</html>
